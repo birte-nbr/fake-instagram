@@ -67,8 +67,8 @@ function onConnectionReady(error) {
 let connection = mysql.createConnection(DBCONFIG);
 
 connection.connect(onConnectionReady);
-
-app.get("/testmysql/:username", (req, res) => {
+/*
+app.get("/users/:username", (req, res) => {
     const query = "SELECT * FROM `users` WHERE username ='" + req.params.username + "'";
     console.log(query);
     connection.query(query, function(error, result, _fields) {
@@ -83,6 +83,22 @@ app.get("/testmysql/:username", (req, res) => {
             },
         });
     });
-});
+}); */
 
+app.get("/testmysql/", (req, res) => {
+    const query = "SELECT * FROM `host_summary`";
+    console.log(query);
+    connection.query(query, function(error, result, _fields) {
+        if (error != null) {
+            console.error(error);
+            return;
+        }
+        console.log(query); // Log the query if needed for debugging
+        res.render("user_details", {
+            data: {
+                result,
+            },
+        });
+    });
+});
 
