@@ -13,12 +13,16 @@
     <h1>User Details</h1>
     <% data.result.forEach(function(user) { %>
 
-        <p>User Username:
+        <p>My Username:
             <%= user.username %>
         </p>
 
 
-        <p>User Name:    <%= user.given_name%>   <%=user.surname %>
+        <p>My Name:    <%= user.given_name%>   <%=user.surname %>
+        </p>
+
+        <p> I'm from: 
+            <%= user.country %>
         </p>
 
 

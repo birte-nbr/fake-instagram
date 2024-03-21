@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require('express'); //required to use 'express' module that allows to template our pages
 const path = require("path"); //required to use 'path' module that gets the current directory
 const app = express(); //create an app from express
-const port = 3800; 
+const port = 3675; 
 
 // Set up the 'views' directory for EJS templates
 app.set('views', path.join(__dirname, 'views'));
