@@ -11,18 +11,20 @@
 </head>
 <body>
     <h1>User Details</h1>
-    <% if (data.result.length > 0) { %>
+    <% data.result.forEach(function(user) { %>
+
         <p>User Username:
-            <%= data.result[0].username %>
+            <%= user.username %>
         </p>
 
 
-        <p>User Name:    <%= data.result[0].given_name%>   <%=data.result[0].surname %>
+        <p>User Name:    <%= user.given_name%>   <%=user.surname %>
         </p>
 
 
-        <% } else { %>        <p>No user found</p>
+        <% if (user.username == '') { %>        <p>No user found</p>
             <% } %>
+        <% }); %>
 
 
 </body>
