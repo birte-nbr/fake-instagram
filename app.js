@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require('express'); //required to use 'express' module that allows to template our pages
 const path = require("path"); //required to use 'path' module that gets the current directory
 const app = express(); //create an app from express
-const port = 3675; 
+const port = 3726; 
 
 // Set up the 'views' directory for EJS templates
 app.set('views', path.join(__dirname, 'views'));
@@ -117,13 +117,13 @@ app.get("/uploadpage", (req, res) => {
 // Route to handle the form submission
 app.post('/upload', async(req, res) => {
     console.log("uploading image");
-    // Access form data, including the image and caption
+    // Access form data, including the image, caption, alt-text etc
     const caption = req.body.caption;
     const uploadedFile = req.files.image;
-    //const query = "INSERT INTO `users` "
-
-
-    var newfilename = "21.03.2024-" + uploadedFile.name;
+    const author = req.body.author;
+    const altText = req.body.altText;
+    
+    let newfilename = "21.03.2024-" + uploadedFile.name;
 
     // Move the uploaded image to a specified folder
     const uploadPath = path.join(__dirname, 'assets/uploads', newfilename);
@@ -135,6 +135,16 @@ app.post('/upload', async(req, res) => {
         // ...
         console.log("uploaded to" + uploadPath);
         res.send('File uploaded!');
+        const query = "INSERT INTO photos (author_id, date, path, caption, alt_text) VALUES (?, NOW(), ?, ?, ?)";
+        
+        connection.query(query, [author, newfilename, caption, altText], (error, results, fields) => {
+            if (error) {
+              console.error('Error inserting into database:', error);
+              return;
+            }
+            
+            console.log('Inserted into database successfully.');
+          });
     });
 
     // Send a response
