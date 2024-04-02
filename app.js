@@ -52,11 +52,12 @@ app.get("/userdetails/:id", (req, res) => {
     const query = "SELECT * FROM `users` WHERE user_id = ?";
    
     connection.query(query,  [user_id], function(error, result, _fields) {
-        if (error != null) {
+        if (error != null || result == 0) {
             console.error(error);
+            res.status(404).render("404")  
             return;
         }
-        res.render("user_page", {
+        res.render("user_details", {
             data: {
                 result,
             },
