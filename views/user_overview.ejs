@@ -11,22 +11,21 @@
 </head>
 <body>
     <h1>User Overview</h1>
-    <% data.result.forEach(function(user) { %>
-
-    <% if (data.result.length > 0) { %>
+    <%   for( let i = 0; i < users.length; i++) { %>
+   
     <ul>
-        <li>Username:
-            <%= user.username %> 
-        </li>
+        <a href="/users/<%= users[i].user_id%>">
+            <li>Username:
+                <%= users[i].username %> 
+            </li>
+        </a>
 
-
-        <li>Name:    <%= user.given_name%>   <%=user.surname %>
+        <li>Name:    <%= users[i].given_name%>   <%=users[i].surname %>
         </li>
 
     </ul>
-        <% } else { %>        <p>No user found</p>
-            <% } %>
-    <% }); %>
+    
+    <% }; %>
 
 
 </body>

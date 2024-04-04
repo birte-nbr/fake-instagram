@@ -2,83 +2,23 @@ require('dotenv').config();
 const express = require('express'); //required to use 'express' module that allows to template our pages
 const path = require("path"); //required to use 'path' module that gets the current directory
 const app = express(); //create an app from express
-const port = 8900; //define our port number, this doesn’t have to be 3000
-
+const port = process.env.PORT; //define our port number, this doesn’t have to be 3000
+const users = require('./routes/UserRoutes'); // importing all user routes
 //------------------------File upload---------------------------
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
 
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+app.use(users);  // setting user paths
 
 // Set up the 'views' directory for EJS templates
 app.set('views', path.join(__dirname, 'views'));
-// Set EJS as the view engine
-app.set('view engine', 'ejs');
-
-// Define a basic route for the root URL ("/")
-app.get('/', (req, res) => {
-    res.send('Hello, You\'ve reached your App!!!');
-});
-
 
 // Start the server
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
-const DBCONFIG = {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    port: process.env.DB_PORT,
-};
 
-const mysql = require("mysql");
-let connection = mysql.createConnection(DBCONFIG);
-
-
-function onConnectionReady(error) {
-    if (error != null) {
-        console.log("connection failed");
-        console.log(error);    //there's an error - deal with it
-    } else {
-        console.log("connection successful");
-        //there's no error - success
-    }
-}
-
-connection.connect(onConnectionReady);
-// page that displays user details
-app.get("/userdetails/:id", (req, res) => {
-    const user_id = req.params.id; 
-    const query = "SELECT * FROM `users` WHERE user_id = ?";
-   
-    connection.query(query,  [user_id], function(error, result, _fields) {
-        if (error != null || result == 0) {
-            console.error(error);
-            res.status(404).render("404")  
-            return;
-        }
-        res.render("user_details", {
-            data: {
-                result,
-            },
-        });
-    });
-});
-// page that lists all users
-app.get("/allusers/", (req, res) => {
-    const query = "SELECT * FROM `users`";
-    connection.query(query, function(error, result, _fields) {
-        if (error != null) {
-            console.error(error);
-            return;
-        }
-        res.render("user_overview", {
-            data: {
-                result,
-            },
-        });
-    });
-});
 
 // route where users can upload files
 app.get("/uploadpage", (req, res) => {
