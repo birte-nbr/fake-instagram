@@ -13,19 +13,18 @@
 <body>
     <h1>Mosaic</h1>
 
-    <% if (data.result.length> 0) { %>  <!--change this to the actual results array-->
+    <%  for( let i = 0; i < posts.length; i++) { %>  <!--change this to the actual results array-->
         <img class="post_pic" 
-            src="<%= posts[index].path.slice(6) %>" 
-            alt="<%= posts[index].alt_text%>" />
+            src="<%= posts[i].path.slice(6) %>" 
+            alt="<%= posts[i].alt_text%>" />
 
 
-        <p>Name: <%= data.result[0].given_name%>
-                <%=data.result[0].surname %>
+        <p>Name: <%= users.given_name%>
+                <%=users.surname %>
         </p>
 
 
-        <% } else { %>
-            <p>No user found</p>
+    
             <% } %>
 
 </body>
