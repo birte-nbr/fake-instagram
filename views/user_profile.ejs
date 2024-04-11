@@ -24,14 +24,20 @@
         <p> I'm from: 
             <%= user.country %>
         </p>
-        <p> my caption:
-            <%= post.caption %>
-        </p>
+        
+    <% if (posts.length > 0) { %>
+        <% posts.forEach(post => { %>
+            <img src="/assets/uploads/<%= post.path %>"alt="<%= post.alt_text %>">
+            <p> my caption:
+                <%= post.caption %>
+            </p>
+        <% }) %>
+     <% } %>
 
         <% if (user.username == '') { %>        <p>No user found</p>
             <% } %>
             
-        <img src="/img/<%= post.path %>"alt="<%= post.alt_text %>"> 
+         
 <a href="/users">Back</a>
 
 </body>

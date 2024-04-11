@@ -4,6 +4,7 @@ const path = require("path"); //required to use 'path' module that gets the curr
 const app = express(); //create an app from express
 const port = process.env.PORT; //define our port number, this doesn’t have to be 3000
 const users = require('./routes/UserRoutes'); // importing all user routes
+const posts = require('./routes/PostsRoutes'); // importing all post routes
 //------------------------File upload---------------------------
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
@@ -11,6 +12,7 @@ app.use(fileUpload());
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 app.use(users);  // setting user paths
+app.use(posts);
 
 // Set up the 'views' directory for EJS templates
 app.set('views', path.join(__dirname, 'views'));

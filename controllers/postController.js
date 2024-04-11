@@ -1,6 +1,6 @@
 const express = require('express');
-const {Post} = require('../models/posts'); // importing all posts routes
-
+const {Post} = require('../models/posts'); // importing post model
+const {User} = require('../models/users'); // importing user model
 
 
 const PostController = {
@@ -17,11 +17,17 @@ const PostController = {
         }
     },
     getUserFeed: async(req, res) => {
-        const user_id = req.params.id; 
-        const post = await Post.getPost(user_id)
-        res.render("user_profile", {
-             post,
-        });
+        try {
+            const user_id = req.params.id; 
+            const posts = await Post.getPost(user_id); // Fetch posts by user
+            res.render("user_profile", {
+                posts, // Pass posts data to template
+            });
+        } catch (error) {
+            console.error("Error fetching user profile:", error);
+            res.status(500).send("Error fetching user profile");
+        }
     }
 }
+
 module.exports = PostController;
