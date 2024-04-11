@@ -16,6 +16,6 @@ posts.get("/photos", PostController.getFeed);
 
 
 // page that displays user details
-posts.get("/users/:id", PostController.getSinglePost); 
+posts.get("/users/:id", PostController.getUserFeed); 
 
 module.exports = posts;

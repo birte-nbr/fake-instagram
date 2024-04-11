@@ -16,11 +16,11 @@ const db = knex({
 
 const Post = {
     getPosts: async () => {
-      return await db.select("*").from("photos");
+      return await db.select("*").from("posts");
     },
   
     getPost: async (user_id) => {
-      return await db.select("*").from("photos").where("author_id", user_id).first();
+      return await db.select("*").from("posts").where("author_id", user_id).first();
     }
   };
   

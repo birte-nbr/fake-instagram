@@ -24,12 +24,15 @@
         <p> I'm from: 
             <%= user.country %>
         </p>
-
+        <p> my caption:
+            <%= post.caption %>
+        </p>
 
         <% if (user.username == '') { %>        <p>No user found</p>
             <% } %>
-       
-<a href="/">Back</a>
+            
+        <img src="/img/<%= post.path %>"alt="<%= post.alt_text %>"> 
+<a href="/users">Back</a>
 
 </body>
 </html>
