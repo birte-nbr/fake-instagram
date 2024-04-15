@@ -15,14 +15,29 @@ const db = knex({
 
 
 const Post = {
+  // get all posts
     getPosts: async () => {
       return await db.select("*").from("posts");
     },
-  
+  // get posts from one user
     getPost: async (user_id) => {
       return await db.select("*").from("posts").where("author_id", user_id).first();
-    }
+    }//,
+    // upload posts
+    /*
+    uploadPost: async(user_id) => {
+      return await db.insert({post_date: NOW()}, {path:}, {caption:}, {alt_text:}, {photo:}, {course:}, {collaboration_id}).into("posts").where("author_id", user_id);
+    } 
+    // ksenias version 
+  createPost: async (fieldsToUpdate) => {
+    fieldsToUpdate.post_created = new Date();
+    const result = await db("posts").insert(fieldsToUpdate);
+    const post_id = result[0];
+    return Post.getPost(post_id);
+  },
+
+    */
   };
-  
+  // INSERT INTO `posts`(`post_id`, `author_id`, `post_date`, `path`, `caption`, `alt_text`, `photo`, `course`, `collaboration_id`)
   module.exports = { Post };
   

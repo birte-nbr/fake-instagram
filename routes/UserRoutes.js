@@ -16,7 +16,8 @@ users.get("/users", UserController.getAllUsers);
 
 
 // page that displays user details
-users.get("/users/:id", UserController.getUserProfile); 
+// is now implemented into getUserFeed 
+//users.get("/users/:id", UserController.getUserProfile); 
 
 module.exports = users;
 

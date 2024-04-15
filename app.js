@@ -11,11 +11,13 @@ app.use(fileUpload());
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
-app.use(users);  // setting user paths
-app.use(posts);
+
 
 // Set up the 'views' directory for EJS templates
 app.set('views', path.join(__dirname, 'views'));
+
+app.use(users);  // setting user paths
+app.use(posts);
 
 // Start the server
 app.listen(port, () => console.log(`App listening on port ${port}!`));
@@ -23,16 +25,18 @@ app.listen(port, () => console.log(`App listening on port ${port}!`));
 
 
 // route where users can upload files
+/*
 app.get("/uploadpage", (req, res) => {
-    return res.render("upload-image");
-});
+    let chooseImage = true;
+    return res.render("upload-image", { chooseImage });
+});*/
 
 /// Route to handle the form submission
 app.post('/upload', async(req, res) => {
     console.log("uploading image");
     // Access form data, including the image, caption, alt-text etc
     const caption = req.body.caption;
-    const uploadedFile = req.files.image;
+    
     const author = req.body.author;
     const altText = req.body.altText;
     
@@ -64,9 +68,3 @@ app.post('/upload', async(req, res) => {
 });
 
 
-//later use this to import all the routes from mainroutes.js
-
-/*
-const routes = require('./routes/mainroutes); //Import routes.js file
-app.use('/', routes); //add the Router to the middleware handling path
- */

@@ -6,7 +6,7 @@ const posts = express.Router();
 
 // Define a route for the root URL ("/")
 posts.get('/', async (req, res) => {
-    res.render('main.ejs');
+    res.render('main.ejs'); // homepage template here 
 });
 
 
@@ -14,8 +14,12 @@ posts.get('/', async (req, res) => {
 posts.get("/photos", PostController.getFeed);
     
 
-
 // page that displays user details
 posts.get("/users/:id", PostController.getUserFeed); 
+
+// upload page
+posts.get("/uploadpage", PostController.uploadPage);
+
+
 
 module.exports = posts;

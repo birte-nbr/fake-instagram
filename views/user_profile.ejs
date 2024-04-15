@@ -25,15 +25,19 @@
             <%= user.country %>
         </p>
         
-    <% if (posts.length > 0) { %>
-        <% posts.forEach(post => { %>
-            <img src="/assets/uploads/<%= post.path %>"alt="<%= post.alt_text %>">
-            <p> my caption:
-                <%= post.caption %>
-            </p>
-        <% }) %>
-     <% } %>
+  <% if (profilePosts.length > 0) { %>
+        <% for( let i = 0; i < profilePosts.length; i++) { %> 
+            <img 
+            src="/assets/uploads/<%= profilePosts[i].path%>" 
+            alt="<%= profilePosts[i].alt_text%>" />
 
+        <%= profilePosts[i].caption  %>
+        <% } %>
+ 
+ 
+   <% } else { %>
+        <p>no photos yet!</p>
+    <% } %>
         <% if (user.username == '') { %>        <p>No user found</p>
             <% } %>
             

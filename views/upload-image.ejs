@@ -9,23 +9,46 @@
 
 
 </head>
+
 <body>
-    <h1>Upload an image</h1>
-  <form action="/upload" method="post" enctype="multipart/form-data">
-    <label for="author">Please put in your name:</label><br>
+  <button onclick="setChooseImage(true);">Image</button>
+  <button onclick="setChooseImage(false);">Code</button>
+
+      <h1>Upload</h1>
+  
+  <p>Choose between uploading an image or code snippet</p>
+  <form action="/upload"enctype="multipart/form-data">
+    <input type="hidden" id="chooseImage" name="chooseImage" value="true">
+    <label for="author">Please put in your ID:</label><br>
     <input type="text" id="author" name="author"><br>
-    <label for="caption">Write a caption for your image:</label><br>
+    <label for="caption">Write a caption:</label><br>
     <input type="text" id="caption" name="caption"><br>
-    <label for="caption">Write description for your image as alt text:</label><br>
-    <input type="text" id="alt-text" name="altText"><br>
-    <input type="file" id="image" name ="image" value="Choose file">
-    <br>
-    <input type="submit" value="Upload file">
-  </form>
-
-
-
-</body>
-
+    <div id="imageFields">
+        <label for="alt-text">Write alt text for your image:</label><br>
+        <input type="text" id="alt-text" name="altText"><br>
+        <input type="file" id="image" name="image" accept="image/*"><br>
+        <input type="submit" value="Upload Image">
+    </div>
+    <div id="codeFields" style="display: none;">
+        <label for="code">Paste your code here:</label><br>
+        <textarea id="code" name="code"></textarea><br>
+        <input type="submit" value="Upload Code">
+    </div>
+</form> 
+  
+  <script>
     
+        function setChooseImage(value) {
+            const imageFields = document.getElementById('imageFields');
+            const codeFields = document.getElementById('codeFields');
+
+            if (value) {
+                imageFields.style.display = 'block';
+                codeFields.style.display = 'none';
+            } else {
+                imageFields.style.display = 'none';
+                codeFields.style.display = 'block';
+            }
+        }
+  </script>
 </html>
