@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require("fs");  // for file upload
 const PostController = require('../controllers/postController.js'); // importing post controller
+const { Post } = require('../models/posts.js');
 const posts = express.Router();
 
 
@@ -20,6 +21,6 @@ posts.get("/users/:id", PostController.getUserFeed);
 // upload page
 posts.get("/uploadpage", PostController.uploadPage);
 
-
+posts.post("/upload", PostController.uploadPost);
 
 module.exports = posts;

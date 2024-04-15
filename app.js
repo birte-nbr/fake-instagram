@@ -32,6 +32,7 @@ app.get("/uploadpage", (req, res) => {
 });*/
 
 /// Route to handle the form submission
+/*
 app.post('/upload', async(req, res) => {
     console.log("uploading image");
     // Access form data, including the image, caption, alt-text etc
@@ -40,14 +41,11 @@ app.post('/upload', async(req, res) => {
     const author = req.body.author;
     const altText = req.body.altText;
     
-    let newfilename = date() + uploadedFile.name;
+    
 
     // Move the uploaded image to a specified folder
-    const uploadPath = path.join(__dirname, 'assets/uploads', newfilename);
-    uploadedFile.mv(uploadPath, (err) => {
-        if (err) { //debug error if occurs
-            return res.status(500).send(err);
-        }
+    
+    
 
         console.log("uploaded to" + uploadPath);
         res.send('File uploaded!');
@@ -65,6 +63,6 @@ app.post('/upload', async(req, res) => {
 
     // Send a response
     console.log('Form submitted successfully!');
-});
 
+*/
 

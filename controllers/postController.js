@@ -1,6 +1,7 @@
 const express = require('express');
 const {Post} = require('../models/posts'); // importing post model
 const {User} = require('../models/users'); // importing user model
+const path = require("path"); //required to use 'path' module that gets the current directory
 
 /* old post controller only passing posts 
 const PostController = {
@@ -49,7 +50,7 @@ const PostController = {
         try {
             const user_id = req.params.id; 
             const user = await User.getUser(user_id); // Fetch user data
-            const profilePosts = await Post.getPost(user_id); // Fetch posts by user
+            const profilePosts = await Post.getProfilePosts(user_id); // Fetch posts by user
             res.render("user_profile", {
                 user, // Pass user data to template
                 profilePosts, // Pass posts data to template
@@ -74,18 +75,28 @@ const PostController = {
             const caption = req.body.caption;
             const chooseImage = req.body.chooseImage === 'true';  // determines if input is for a photo or code
             if (chooseImage){
-                 const alt_text = req.body.alt_text;
-                 const path = req.file.path;
                  const uploadedPhoto = req.files.image;
-                 await Post.createPost({user_id, description, alt_text, path, uploadedPhoto, caption });
+                 const alt_text = req.body.alt_text;
+                 // generate a file name
+                 const randomNumber = Math.floor(Math.random() * 9000) + 1000;
+                 let newfilename = randomNumber + uploadedPhoto.name;
+                 const uploadPath = path.join(__dirname, 'assets/uploads', newfilename);
+                // move the upload to upload folder
+                 uploadedPhoto.mv(uploadPath, (err) => {
+                    if (err) { //debug error if occurs
+                        return res.status(500).send(err);
+                    }
+                 });
+                 await Post.createPost({chooseImage, user_id, alt_text, newfilename, uploadedPhoto, caption });
             } else {
                 const code_text = req.body.code;
-                await Post.createPost({user_id, description, code_text, caption });
+                await Post.createPost({chooseImage, user_id, code_text, caption });
             }      
-            res.redirect(`/users/${user_id}`); // upload was successful, redirect to user profile
+            res.redirect(`users/${user_id}`); // upload was successful, redirect to user profile
+           
         } catch(error){
-            onsole.error("Error creating post:", error);
-            res.status(500).send("Error creating post");
+            console.error("Error creating post:", error);
+            //res.status(500).send("Error creating post");
         }
     }
   

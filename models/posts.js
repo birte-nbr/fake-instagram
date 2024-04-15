@@ -20,24 +20,57 @@ const Post = {
       return await db.select("*").from("posts");
     },
   // get posts from one user
-    getPost: async (user_id) => {
+    getProfilePosts: async (user_id) => {
       return await db.select("*").from("posts").where("author_id", user_id).first();
-    }//,
-    // upload posts
-    /*
-    uploadPost: async(user_id) => {
-      return await db.insert({post_date: NOW()}, {path:}, {caption:}, {alt_text:}, {photo:}, {course:}, {collaboration_id}).into("posts").where("author_id", user_id);
-    } 
-    // ksenias version 
-  createPost: async (fieldsToUpdate) => {
-    fieldsToUpdate.post_created = new Date();
-    const result = await db("posts").insert(fieldsToUpdate);
-    const post_id = result[0];
-    return Post.getPost(post_id);
-  },
+    },
+    // get single post
+    getPost: async(post_id) => {
+      return await db.select("*").from("posts").where("post_id", post_id).first();
+    },
+    // create posts 
+    createPost: async (fieldsToUpdate) => {
+      let post_date = new Date();
+      let course = 1; // for now these will be set, add dropdown later 
+      let collaboration_id = 1; // for now is set, will be implemented later
+      
+      console.log("Fields to update:", fieldsToUpdate);
+           
+      let postData = {
+          author_id: fieldsToUpdate.user_id,
+          post_date: post_date,
+          caption: fieldsToUpdate.caption,
+          photo: fieldsToUpdate.chooseImage,
+          course: course,
+          collaboration_id: collaboration_id
+      };
+  
+      // If it's an image post, add additional image-related fields
+      if (fieldsToUpdate.chooseImage) {
+          postData.path = fieldsToUpdate.newfilename;
+          postData.alt_text = fieldsToUpdate.alt_text;
+          postData.code_text = "none";
+      } else {
+          postData.path = "none"; // Set default value for path if not an image post
+          postData.alt_text = "none"; 
+          postData.code_text = fieldsToUpdate.code_text;
+      }
+  
+      try {
+          // Insert into db
+          const result = await db.insert(postData).into("posts");
+  
+          //const post_id = result[0];
+          //return Post.getPost(post_id);
+          return result;
+      } catch (error) {
+          console.error("Error inserting post:", error);
+          throw error; // Throw any errors that occur during insertion
+      }
+      
+  }
 
-    */
+  
   };
-  // INSERT INTO `posts`(`post_id`, `author_id`, `post_date`, `path`, `caption`, `alt_text`, `photo`, `course`, `collaboration_id`)
+  
   module.exports = { Post };
   
