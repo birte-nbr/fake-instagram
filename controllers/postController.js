@@ -68,32 +68,32 @@ const PostController = {
             console.error('Error rendering upload page:', error);
             res.status(500).send('Error rendering upload page');
         }
-    }, 
+    },
     uploadPost: async (req, res) => {
         try {
             const user_id = req.body.author;  // for now, user has to put their id number
             const caption = req.body.caption;
+            const module = req.body.module;
             const chooseImage = req.body.chooseImage === 'true';  // determines if input is for a photo or code
-            if (chooseImage){
+            if (chooseImage == "true"){
                  const uploadedPhoto = req.files.image;
-                 const alt_text = req.body.alt_text;
                  // generate a file name
                  const randomNumber = Math.floor(Math.random() * 9000) + 1000;
                  let newfilename = randomNumber + uploadedPhoto.name;
                  const uploadPath = path.join(__dirname, 'assets/uploads', newfilename);
                 // move the upload to upload folder
-                 uploadedPhoto.mv(uploadPath, (err) => {
+                /* uploadedPhoto.mv(uploadPath, (err) => {
                     if (err) { //debug error if occurs
                         return res.status(500).send(err);
                     }
-                 });
-                 await Post.createPost({chooseImage, user_id, alt_text, newfilename, uploadedPhoto, caption });
+                 });*/
+                 await Post.createPost({chooseImage, user_id, newfilename, caption, module });
+                 
             } else {
                 const code_text = req.body.code;
-                await Post.createPost({chooseImage, user_id, code_text, caption });
-            }      
-            res.redirect(`users/${user_id}`); // upload was successful, redirect to user profile
-           
+                await Post.createPost({chooseImage, user_id, code_text, caption, module });
+            } 
+            res.redirect(`users/${user_id}`); // upload was successful, redirect to user profile   
         } catch(error){
             console.error("Error creating post:", error);
             //res.status(500).send("Error creating post");

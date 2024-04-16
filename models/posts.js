@@ -30,28 +30,26 @@ const Post = {
     // create posts 
     createPost: async (fieldsToUpdate) => {
       let post_date = new Date();
-      let course = 1; // for now these will be set, add dropdown later 
       let collaboration_id = 1; // for now is set, will be implemented later
       
       console.log("Fields to update:", fieldsToUpdate);
+      console.log("Choose image:", fieldsToUpdate.chooseImage);
            
       let postData = {
           author_id: fieldsToUpdate.user_id,
           post_date: post_date,
           caption: fieldsToUpdate.caption,
           photo: fieldsToUpdate.chooseImage,
-          course: course,
+          course: fieldsToUpdate.module,
           collaboration_id: collaboration_id
       };
   
       // If it's an image post, add additional image-related fields
       if (fieldsToUpdate.chooseImage) {
           postData.path = fieldsToUpdate.newfilename;
-          postData.alt_text = fieldsToUpdate.alt_text;
           postData.code_text = "none";
       } else {
           postData.path = "none"; // Set default value for path if not an image post
-          postData.alt_text = "none"; 
           postData.code_text = fieldsToUpdate.code_text;
       }
   
