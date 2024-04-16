@@ -2,6 +2,7 @@ const express = require('express');
 const {Post} = require('../models/posts'); // importing post model
 const {User} = require('../models/users'); // importing user model
 const path = require("path"); //required to use 'path' module that gets the current directory
+const { profile } = require('console');
 
 /* old post controller only passing posts 
 const PostController = {
@@ -51,9 +52,22 @@ const PostController = {
             const user_id = req.params.id; 
             const user = await User.getUser(user_id); // Fetch user data
             const profilePosts = await Post.getProfilePosts(user_id); // Fetch posts by user
+            let codeLines = []; // Initialize codeLines array
+          
+            // Check if profilePosts exists and if code_text is empty
+            profilePosts.forEach(element => {
+                codeColumn = element.code_text; 
+                if (codeColumn !== "none"){
+                    console.log(codeColumn);
+                    codeLines = codeColumn.split('\n'); // Split code_text into lines
+                }
+            }); 
+           
+          
             res.render("user_profile", {
                 user, // Pass user data to template
                 profilePosts, // Pass posts data to template
+                codeLines,
             });
         } catch (error) {
             console.error("Error fetching user profile:", error);

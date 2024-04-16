@@ -21,7 +21,7 @@ const Post = {
     },
   // get posts from one user
     getProfilePosts: async (user_id) => {
-      return await db.select("*").from("posts").where("author_id", user_id).first();
+      return await db.select("*").from("posts").where("author_id", user_id);
     },
     // get single post
     getPost: async(post_id) => {
@@ -32,9 +32,7 @@ const Post = {
       let post_date = new Date();
       let collaboration_id = 1; // for now is set, will be implemented later
       
-      console.log("Fields to update:", fieldsToUpdate);
-      console.log("Choose image:", fieldsToUpdate.chooseImage);
-           
+               
       let postData = {
           author_id: fieldsToUpdate.user_id,
           post_date: post_date,
