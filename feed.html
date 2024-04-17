@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
+      <link rel="stylesheet" href="styles.css">
+      <title>The Loop</title>
+   </head>
+   <body>
+      <!-- Sidebar bg -->
+      <img src="assets/img/sidebar-bg.jpg" alt="sidebar img" class="bg-image">
+
+      <!--header-->
+      <header class="navbar-top">
+         <div class="navbar-top-container">
+            <div class="navbar-top-toggle" id="navbar-top-toggle">
+               <i class="ri-menu-line"></i>
+            </div>
+
+            <a href="feed.html" class="navbar-top-logo">
+                <img src="images/loop-logo.png" >
+            </a>
+        
+            <div class="login-btn">
+                <a href="login.html">
+                    <button class="login-btn">Login/Register</button>
+                </a>
+            </div>
+            
+         </div>
+      </header>
+
+      <!--sidebar drop-->
+      <div class="sidebar" id="sidebar">
+         <nav class="sidebar-container">
+            <div class="sidebar-menu">
+               <div class="sidebar-menu-list">
+                  <a href="feed.html" class="sidebar-select active-select">
+                     <i class="ri-infinity-line"></i>
+                     <span class="sidebar-select-name">The Loop</span>
+                     <span class="sidebar-select-small">Loop</span>
+                  </a>
+                  
+                  <a href="./feed.html/#post-box" class="sidebar-select">
+                    <i class="ri-add-circle-line"></i>
+                    <span class="sidebar-select-name">Contribute</span>
+                    <span class="sidebar-select-small">Contribute</span>
+                 </a>
+
+                  <a href="info.html" class="sidebar-select">
+                     <i class="ri-compass-3-line"></i>
+                     <span class="sidebar-select-name">About IDM</span>
+                     <span class="sidebar-select-small">About IDM</span>
+                  </a>
+
+                  <a href="calendar.html" class="sidebar-select">
+                     <i class="ri-calendar-line"></i>
+                     <span class="sidebar-select-name">Event Loop</span>
+                     <span class="sidebar-select-small">Events</span>
+                  </a>
+
+               </div>
+
+               <h3 class="sidebar-title">
+                  <span>Courses</span>
+               </h3>
+
+               <div class="sidebar-menu-list">
+                  <a href="#" class="sidebar-select">
+                     <i class="ri-code-s-slash-line"></i>
+                     <span class="sidebarv-name">Web Authoring</span>
+                     <span class="sidebar-select-small">Web Authoring</span>
+                  </a>
+
+                  <a href="#" class="sidebar-select">
+                     <i class="ri-film-line"></i>
+                     <span class="sidebar-select-name">Video & Sensors</span>
+                     <span class="sidebar-select-small">Video & Sensors</span>
+                  </a>
+
+                  <a href="#" class="sidebar-select">
+                     <i class="ri-play-circle-line"></i>
+                     <span class="sidebar-select-name">Critical Media</span>
+                     <span class="sidebar-select-small">Critical Media</span>
+                  </a>
+
+                  <a href="#" class="sidebar-select">
+                     <i class="ri-dashboard-line"></i>
+                     <span class="sidebar-select-name">Visual Computing</span>
+                     <span class="sidebar-select-small">Visual Computing</span>
+                  </a>
+
+                  <a href="#" class="sidebar-select">
+                    <i class="ri-computer-line"></i>
+                    <span class="sidebar-select-name">Programming</span>
+                    <span class="sidebar-select-small">Programming</span>
+                 </a>
+
+               </div>
+
+               <h3 class="sidebar-title">
+                  <span>Personal</span>
+               </h3>
+
+               <div class="sidebar-menu-list">
+                  <a href="profile.html" class="sidebar-select">
+                     <i class="ri-user-line"></i>
+                     <span class="sidebar-select-name">Personal Loop</span>
+                     <span class="sidebar-select-small">Personal Loop</span>
+                  </a>
+
+               </div>
+            </div>
+
+            <div class="sidebar-logout">
+                <a href="#" class="sidebar-select">
+                    <i class="ri-logout-box-r-line"></i>
+                    <span class="sidebar-select-name">Logout</span>
+                    <span class="sidebar-select-small">Logout</span>
+                 </a>
+            </div>
+         </nav>
+      </div>
+
+
+      <!--Loop-->
+      <main class="main main-container" id="main">
+
+        <section class="loop-feed">
+            <h1>The Loop</h1>
+            <div id="post-box">
+                    <h2>Create a post!</h2>
+            
+                        <form action="" class="post-cta">
+                        
+                            <input type="text" placeholder="Contribute to The Loop!" id="create-post">
+                            <input type="submit" value="Post" class="btn"> 
+                            <div class="emoji-menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="emoji-icon">
+                                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="emoji-icon">
+                                <path d="M3.25 4A2.25 2.25 0 001 6.25v7.5A2.25 2.25 0 003.25 16h7.5A2.25 2.25 0 0013 13.75v-7.5A2.25 2.25 0 0010.75 4h-7.5zM19 4.75a.75.75 0 00-1.28-.53l-3 3a.75.75 0 00-.22.53v4.5c0 .199.079.39.22.53l3 3a.75.75 0 001.28-.53V4.75z"></path>
+                            </svg>
+                        </div>
+                        </form>
+                       
+            </div>
+
+
+            <div class="posts-feed">
+                <!--post-->
+                <div class="post">
+                    <div class="post-heading">
+                        <div class="user">
+                            <div class="profile-photo">
+                                <img src="assets/images/avatars/avatar-5.jpg" alt="">
+                            </div>
+                            <div class="info">
+                                <h3>John Michael</h3>
+                                <small>2 hours ago</small>
+                            </div>
+                            <div class="menu">
+                                <button type="button" class="menu-btn" aria-haspopup="true" aria-expanded="false">
+                                    <ion-icon class="menu-icon" name="ellipsis-horizontal" role="img" aria-label="ellipsis horizontal"></ion-icon>
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="post-content">
+                        <p class="content">Photography is the art of capturing light with a camera. It can be used to create images that tell stories, express emotions, or document reality. it can be fun, challenging, or rewarding. It can also be a hobby, a profession, or a passion. 📷</p>
+                    </div>
+                    
+                    <div class="post-interaction">
+                        <div class="likes">
+                            <div class="like-btn">
+                                <button type="button">
+                                    <i class="ri-heart-line like-icon"></i>
+                                </button>
+                                <span class="like-count">1,300</span>
+                            </div>
+                        </div>
+                        <div class="comments">
+                            <button type="button" class="comment-btn" onclick="scrollToComment()">
+                                <i class="ri-chat-3-line comment-icon"></i>
+                            </button>
+                            <span class="comment-count">260</span>
+                        </div>
+                    </div>
+                    
+                
+                    <div class="comments-section">
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Steeve</a>
+                                <p class="comment-text">I love this so much! 🌳🐶</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Monroe</a>
+                                <p class="comment-text">I enjoy people and emotions. 😊😢</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/images/avatars/avatar-5.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Jesse</a>
+                                <p class="comment-text">Photography is my life. 🎨📸</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="add-comment">
+                        <img src="assets/images/avatars/avatar-7.jpg" alt="" class="user-avatar">
+                        <div class="comment-input">
+                            <textarea placeholder="Add Comment...." rows="1" class="comment-textarea"></textarea>
+                            
+                        </div>
+                        <button type="submit" class="comment-submit-btn">Comment</button>
+                    </div>
+                </div>
+                
+
+                 <!--post-->
+                 <div class="post">
+                    <div class="post-heading">
+                        <div class="user">
+                            <div class="profile-photo">
+                                <img src="images/eve.jpg">
+                            </div>
+                            <div class="info">
+                                <h3>Lana Rose</h3>
+                                <small>Dublin, 15 Minutes Ago</small>
+                            </div>
+                        </div>
+                        <span class="edit">
+                            <i class="uil uil-ellipsis-h"></i>
+                        </span>
+                    </div>
+
+                    <div class="posted-image">
+                        <img src="images/eve.jpg">
+                    </div>
+
+                    <div class="action-buttons">
+                        <div class="interaction-buttons">
+                            <span><i class="uil uil-heart"></i></span>
+                            <span><i class="uil uil-comment-dots"></i></span>
+                            <span><i class="uil uil-share-alt"></i></span>
+                        </div>
+                        <div class="bookmark">
+                            <span><i class="uil uil-bookmark-full"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="liked-by">
+                        <span><img src="./images/profile-10.jpg"></span>
+                        <span><img src="./images/profile-4.jpg"></span>
+                        <span><img src="./images/profile-15.jpg"></span>
+                        <p>Liked by <b>Ernest Achiever</b> and <b>2, 323 others</b></p>
+                    </div>
+
+                    <div class="caption">
+                        <p><b>Lana Rose</b> Lorem ipsum dolor sit quisquam eius. 
+                        <span class="harsh-tag">#lifestyle</span></p>
+                    </div>
+
+                    <div class="comments-section">
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Steeve</a>
+                                <p class="comment-text">I love this so much! 🌳🐶</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Monroe</a>
+                                <p class="comment-text">I enjoy people and emotions. 😊😢</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/images/avatars/avatar-5.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Jesse</a>
+                                <p class="comment-text">Photography is my life. 🎨📸</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="add-comment">
+                        <img src="assets/images/avatars/avatar-7.jpg" alt="" class="user-avatar">
+                        <div class="comment-input">
+                            <textarea placeholder="Add Comment...." rows="1" class="comment-textarea"></textarea>
+                            
+                        </div>
+                        <button type="submit" class="comment-submit-btn">Comment</button>
+                    </div>
+                </div>
+                
+                
+
+                
+                 <!--post-->
+                 <div class="post">
+                    <div class="post-heading">
+                        <div class="user">
+                            <div class="profile-photo">
+                                <img src="images/eve.jpg">
+                            </div>
+                            <div class="info">
+                                <h3>Lana Rose</h3>
+                                <small>Dublin, 15 Minutes Ago</small>
+                            </div>
+                        </div>
+                        <span class="edit">
+                            <i class="uil uil-ellipsis-h"></i>
+                        </span>
+                    </div>
+
+                    <div class="posted-image">
+                        <img src="images/eve.jpg">
+                    </div>
+
+                    <div class="action-buttons">
+                        <div class="interaction-buttons">
+                            <span><i class="uil uil-heart"></i></span>
+                            <span><i class="uil uil-comment-dots"></i></span>
+                            <span><i class="uil uil-share-alt"></i></span>
+                        </div>
+                        <div class="bookmark">
+                            <span><i class="uil uil-bookmark-full"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="liked-by">
+                        <span><img src="./images/profile-10.jpg"></span>
+                        <span><img src="./images/profile-4.jpg"></span>
+                        <span><img src="./images/profile-15.jpg"></span>
+                        <p>Liked by <b>Ernest Achiever</b> and <b>2, 323 others</b></p>
+                    </div>
+
+                    <div class="caption">
+                        <p><b>Lana Rose</b> Lorem ipsum dolor sit quisquam eius. 
+                        <span class="harsh-tag">#lifestyle</span></p>
+                    </div>
+
+                    <div class="comments-section">
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Steeve</a>
+                                <p class="comment-text">I love this so much! 🌳🐶</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/images/avatars/avatar-3.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Monroe</a>
+                                <p class="comment-text">I enjoy people and emotions. 😊😢</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/images/avatars/avatar-5.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Jesse</a>
+                                <p class="comment-text">Photography is my life. 🎨📸</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="add-comment">
+                        <img src="assets/images/avatars/avatar-7.jpg" alt="" class="user-avatar">
+                        <div class="comment-input">
+                            <textarea placeholder="Add Comment...." rows="1" class="comment-textarea"></textarea>
+                            
+                        </div>
+                        <button type="submit" class="comment-submit-btn">Comment</button>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="news">
+            <h1>News</h1>
+            <div class="previews">
+                <div class="calender-preview">
+                    <h2>Events Calendar</h2>
+                    <img src="images/group.jpg">
+                </div>
+            </div>
+            <div class="previews">
+                <div class="weather-preview">
+                    <h2>Today in Dublin</h2>
+                    <img src="images/group.jpg">
+                </div>
+            </div>
+    </section>
+      </main>
+      
+
+
+      <script src="main.js"></script>
+   </body>
+</html>
