@@ -38,8 +38,8 @@ const PostController = {
     getFeed: async(req, res) =>{
         try {
             const posts = await Post.getPosts();
-            console.log(posts); // Log the posts variable to the console
-            res.render("photo-overview", {
+            //console.log(posts); // Log the posts variable to the console
+            res.render("feed", {
                 posts, 
             });
         } catch (error) {
@@ -58,13 +58,13 @@ const PostController = {
             profilePosts.forEach(element => {
                 codeColumn = element.code_text; 
                 if (codeColumn !== "none"){
-                    console.log(codeColumn);
+                    //console.log(codeColumn);
                     codeLines = codeColumn.split('\n'); // Split code_text into lines
                 }
             }); 
            
           
-            res.render("user_profile", {
+            res.render("profile", {
                 user, // Pass user data to template
                 profilePosts, // Pass posts data to template
                 codeLines,
@@ -111,6 +111,16 @@ const PostController = {
         } catch(error){
             console.error("Error creating post:", error);
             //res.status(500).send("Error creating post");
+        }
+    }, 
+    getCoursePosts: async (req, res) => {
+        try {
+            const {course} = req.body; 
+            console.log(course);
+            await Post.getPostsByCourse({course}); // wait for model output 
+            res.render("feed", { posts });
+        } catch (error) {
+            console.error("Error fetching course data:", error);
         }
     }
   

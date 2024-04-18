@@ -16,6 +16,9 @@ app.set('view engine', 'ejs');
 // Set up the 'views' directory for EJS templates
 app.set('views', path.join(__dirname, 'views'));
 
+// set up public directory for css
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(users);  // setting user paths
 app.use(posts);
 

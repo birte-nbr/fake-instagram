@@ -23,4 +23,6 @@ posts.get("/uploadpage", PostController.uploadPage);
 
 posts.post("/upload", PostController.uploadPost);
 
+posts.post("/photos", PostController.getCoursePosts);
+
 module.exports = posts;

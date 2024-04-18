@@ -44,3 +44,25 @@ function getTab(el) {
       getTab(e.target);
     }
   });
+
+  // send sidebar data to server
+  document.querySelector(".sidebar-select").addEventListener("click", function(event) {
+    console.log("clicked");
+    const course = $(this).data("sidebar");
+
+    $.ajax({
+        url: `/photos/${course}`, // need to change
+        method: "POST",
+        data: { course: course },
+        success: function(response) {
+          // Handle successful response from the server
+          
+            console.log("Data sent successfully!");
+          
+        },
+        error: function(xhr, status, error) {
+          // Handle network errors or server-side errors
+          console.error("Error sending data:", error);
+        }
+      });
+    });
