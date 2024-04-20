@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require("fs");  // for file upload
 const UserController = require('../controllers/userController.js'); // importing user controller
+
 const users = express.Router();
 
 
@@ -12,7 +13,8 @@ users.get('/', async (req, res) => {
 
 // page that lists all users
 users.get("/users", UserController.getAllUsers);
-    
+
+   
 
 
 // page that displays user details

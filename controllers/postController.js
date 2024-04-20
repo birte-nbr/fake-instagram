@@ -63,7 +63,6 @@ const PostController = {
                 }
             });
 
-
             res.render("profile", {
                 user, // Pass user data to template
                 profilePosts, // Pass posts data to template

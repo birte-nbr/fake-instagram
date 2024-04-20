@@ -5,6 +5,7 @@ const app = express(); //create an app from express
 const port = process.env.PORT; //define our port number, this doesn’t have to be 3000
 const users = require('./routes/UserRoutes'); // importing all user routes
 const posts = require('./routes/PostsRoutes'); // importing all post routes
+const login = require('./routes/LoginRoutes');
 //------------------------File upload---------------------------
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
@@ -19,8 +20,9 @@ app.set('views', path.join(__dirname, 'views'));
 // set up public directory for css
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(users);  // setting user paths
+app.use(users);  // setting all paths
 app.use(posts);
+app.use(login);
 
 // Start the server
 app.listen(port, () => console.log(`App listening on port ${port}!`));
