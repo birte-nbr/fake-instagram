@@ -1,5 +1,4 @@
 
-
 //toggle menu
 
 const showSidebar = (toggleId, sidebarId, mainId) => {
@@ -45,7 +44,7 @@ function getTab(el) {
     }
   });
 
-  // send sidebar data to server
+  // send course selection to server
   document.querySelector(".sidebar-select").addEventListener("click", function(event) {
     console.log("clicked");
     const course = $(this).data("sidebar");
@@ -66,3 +65,18 @@ function getTab(el) {
         }
       });
     });
+
+    // toggle between img or text upload
+    
+    function setChooseForm(value) {
+      const imageFields = document.getElementById('img-form');
+      const codeFields = document.getElementById('text-form');
+      // hide or show fields 
+      if (value) {
+          imageFields.style.display = 'block';
+          codeFields.style.display = 'none';
+      } else {
+          imageFields.style.display = 'none';
+          codeFields.style.display = 'block';
+      }
+  }

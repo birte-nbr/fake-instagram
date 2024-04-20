@@ -18,11 +18,15 @@ posts.get("/photos", PostController.getFeed);
 // page that displays user details
 posts.get("/users/:id", PostController.getUserFeed); 
 
-// upload page
+
 posts.get("/uploadpage", PostController.uploadPage);
 
-posts.post("/upload", PostController.uploadPost);
+// upload img
+posts.post("/uploadimg", PostController.uploadPost);
 
-posts.post("/photos", PostController.getCoursePosts);
+// upload text
+posts.post("/uploadtext", PostController.uploadText);
+
+posts.get("/photos", PostController.getCoursePosts);
 
 module.exports = posts;
