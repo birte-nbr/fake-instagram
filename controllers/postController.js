@@ -88,32 +88,27 @@ const PostController = {
             const user_id = req.body.author;  // for now, user has to put their id number
             const caption = req.body.caption;
             const module = req.body.module;
-            const chooseImage = req.body.chooseImage;                       
+            const chooseImage = req.body.chooseImage ? 1 : 0;                    
             const uploadedPhoto = req.files.image;
             // generate a file name
             const randomNumber = Math.floor(Math.random() * 9000) + 1000;
             let newfilename = randomNumber + uploadedPhoto.name;
             //const uploadPath = path.join(__dirname, 'assets/uploads', newfilename);
 
-            const uploadSuccessFul = await Post.createPost({ chooseImage, uploadedPhoto, user_id, newfilename, caption, module });
-            const uploadDataStored = await Post.storeUpload(image, req);
-            if (uploadSuccessFul) {
-                console.log("showing upload");                    
-                console.log("uploadDataStored", uploadDataStored);
-            }
+            await Post.createPost({ chooseImage, uploadedPhoto, user_id, newfilename, caption, module });          
             res.redirect(`users/${user_id}`); // upload was successful, redirect to user profile   
         } catch (error) {
             console.error("Error creating img post:", error);
             //res.status(500).send("Error creating post");
         }
-    },
+    }, 
     uploadText: async (req, res) => {
         try {
             const user_id = req.body.author;  // for now, user has to put their id number
             const caption = req.body.caption;
             const module = req.body.module;
             const code_text = req.body.code;
-            const chooseImage = req.body.chooseImage;
+            const chooseImage = req.body.chooseImage ? 1 : 0;  
             
             await Post.createTextPost({chooseImage, user_id, code_text, caption, module });
             res.redirect(`users/${user_id}`);

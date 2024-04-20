@@ -1,5 +1,7 @@
 const knex = require("knex");
 const dotenv = require("dotenv");
+const sharp = require("sharp");
+const fs = require("fs");
 
 dotenv.config();
 
@@ -55,20 +57,24 @@ const Post = {
     };
    uploadedPhoto = fieldsToUpdate.uploadedPhoto;
     // check img, resize, and move
+    const path = require('path');
+
     if (acceptedMimeTypes.indexOf(uploadedPhoto.mimetype) >= 0) {
-      const imageDestinationPath = __dirname + "/uploads/" + uploadedPhoto.name;
+      const imageDestinationPath = path.join(__dirname, '..', 'public', 'assets', 'uploads', uploadedPhoto.name);
       await uploadedPhoto.mv(imageDestinationPath);
 
       const resizedImagePath =
-        __dirname + "/uploads/resized/" + uploadedPhoto.name;
+      path.join(__dirname, '..', 'public', 'assets', 'uploads', 'resized', uploadedPhoto.name);
       await sharp(imageDestinationPath).resize(750).toFile(resizedImagePath);
-
+/*  // for deleting files 
       fs.unlink(imageDestinationPath, function (err) {
         if (err) {
-          throw err;
-        };
-        console.log(imageDestinationPath + " deleted");
-      });
+            console.error("Error deleting file:", err);
+        } else {
+            console.log(imageDestinationPath + " deleted");
+        }
+    }); */
+    
     }
     try {
       // Insert into db
@@ -77,27 +83,6 @@ const Post = {
     } catch (error) {
       console.error("Error inserting post:", error);
       throw error; // Throw any errors that occur during insertion
-    }
-  },
-  storeUpload: async (file, req) => {
-    let knexInstance;
-    try {
-      const data = {
-        upload_file_name: file.name,
-        upload_caption: req.body.caption,
-        upload_path: file.name,
-        upload_author: req.session.user_id,
-      };
-      knexInstance = await knex();
-
-      const [insertedId] = await knexInstance("uploads").insert(data);
-      console.log("Query Ran:", knexInstance.lastQuery());
-      console.log("insert id:", insertedId);
-      return insertedId;
-    } catch (error) {
-      console.error("Unable to store upload data", error);
-    } finally {
-      if (knexInstance) await knexInstance.destroy();
     }
   },
   createTextPost: async (fieldsToUpdate) => {
