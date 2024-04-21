@@ -1667,6 +1667,14 @@ form {
             transform: translateX(0);
         }
 
+        .right-panel img,
+        .left-panel img {
+            margin-top: 2em;
+            color: #20293a;
+            color: #007bff;
+        }
+
+
     .account-text {
     display: none;
 }
