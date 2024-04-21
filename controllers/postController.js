@@ -88,7 +88,8 @@ const PostController = {
     },
     getCoursePosts: async (req, res) => {
         try {
-            const course  = req.query.course;
+            console.log(req.body);
+            const course  = req.body.sidebar_data;
             console.log(course);
             //const postsByCourse = await Post.getPostsByCourse({ course }); // wait for model output 
             //res.render("feed", { postsByCourse });

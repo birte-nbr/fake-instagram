@@ -2,6 +2,7 @@ const knex = require("knex");
 const dotenv = require("dotenv");
 const sharp = require("sharp");
 const fs = require("fs");
+const path = require('path');
 
 const permissions = fs.constants.S_IWUSR | fs.constants.S_IWGRP | fs.constants.S_IWOTH;
 
@@ -63,7 +64,7 @@ const Post = {
     };
     uploadedPhoto = fieldsToUpdate.uploadedPhoto;
     // check img, resize, and move
-    const path = require('path');
+    
 
     if (acceptedMimeTypes.indexOf(uploadedPhoto.mimetype) >= 0) {
       const imageDestinationPath = path.join(__dirname, '..', 'public', 'assets', 'uploads', uploadedPhoto.name);

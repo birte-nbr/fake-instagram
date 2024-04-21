@@ -27,6 +27,6 @@ posts.post("/uploadimg", PostController.uploadPost);
 // upload text
 posts.post("/uploadtext", PostController.uploadText);
 
-posts.post("/feed", PostController.getCoursePosts);
+posts.post("/courseFeed", PostController.getCoursePosts);
 
 module.exports = posts;

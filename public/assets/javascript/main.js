@@ -98,6 +98,15 @@ function getTab(el) {
 }
 
   // send course selection to server
+// via form
+
+function sendSidebarData() {
+    document.getElementById("sidebarForm").submit();
+}
+
+  // ajax (not working)
+
+/*
   document.querySelector(".sidebar-select").addEventListener("click", function(event) {
     console.log("clicked");
     const course = $(this).data("sidebar"); // get data from particular course
@@ -120,7 +129,7 @@ function getTab(el) {
         }
       });
     });
-
+*/
 
 function toggleForm(formToShow, formToHide) {
     document.getElementById(formToShow).style.display = "block";

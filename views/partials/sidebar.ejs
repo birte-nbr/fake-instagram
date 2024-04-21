@@ -49,12 +49,15 @@
               </h3>
 
               <div class="sidebar-menu-list">
-                 <p class="sidebar-select" data-sidebar="web">
-                    <i class="ri-code-s-slash-line"></i>
-                    <span class="sidebar-select-name">Web Authoring</span>
-                    <span class="sidebar-select-small">Web Authoring</span>
-                 </p>
-
+               <form id="sidebarForm" action="/courseFeed" method="post">
+                  <input type="hidden" name="sidebar_data" id="sidebarDataInput" value="">
+              </form>
+              
+              <p class="sidebar-select" data-sidebar="web" onclick="sendSidebarData()">
+                  <i class="ri-code-s-slash-line"></i>
+                  <span class="sidebar-select-name">Web Authoring</span>
+                  <span class="sidebar-select-small">Web Authoring</span>
+              </p>
                  <p class="sidebar-select" data-sidebar="video">
                     <i class="ri-film-line"></i>
                     <span class="sidebar-select-name">Video & Sensors</span>
