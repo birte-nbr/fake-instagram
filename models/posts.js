@@ -3,8 +3,6 @@ const dotenv = require("dotenv");
 const sharp = require("sharp");
 const fs = require("fs");
 
-const permissions = fs.constants.S_IWUSR | fs.constants.S_IWGRP | fs.constants.S_IWOTH;
-
 
 dotenv.config();
 
@@ -72,22 +70,7 @@ const Post = {
       const resizedImagePath =
         path.join(__dirname, '..', 'public', 'uploads', 'resized', uploadedPhoto.name);
       await sharp(imageDestinationPath).resize(750).toFile(resizedImagePath);
-      // change file permission to delete
-      fs.chmod(imageDestinationPath, permissions, (err) => {
-        if (err) {
-          console.error('Error changing file permissions:', err);
-        } else {
-          console.log('File permissions changed successfully.');
-          // Now attempt to delete the file
-          fs.unlink(imageDestinationPath, (unlinkErr) => {
-            if (unlinkErr) {
-              console.error('Error deleting file:', unlinkErr);
-            } else {
-              console.log(imageDestinationPath +'deleted successfully.');
-            }
-          });
-        }
-      });
+       
         }
         try {
           // Insert into db

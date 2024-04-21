@@ -20,6 +20,7 @@ const LoginController = {
         return res.redirect("/feed");
       } else {
         console.log("no user found", user.length);
+        res.redirect("/404");
       }
     } catch (error) {
       console.log("checkLogin error", error);
