@@ -2,7 +2,7 @@ const express = require('express');
 const { Post } = require('../models/posts'); // importing post model
 const { User } = require('../models/users'); // importing user model
 const path = require("path"); //required to use 'path' module that gets the current directory
-const { profile } = require('console');
+//const { profile } = require('console');
 
 /* old post controller only passing posts 
 const PostController = {
@@ -117,10 +117,10 @@ const PostController = {
     },
     getCoursePosts: async (req, res) => {
         try {
-            const { course } = req.body;
+            const course  = req.query.course;
             console.log(course);
-            await Post.getPostsByCourse({ course }); // wait for model output 
-            res.render("feed", { posts });
+            //const postsByCourse = await Post.getPostsByCourse({ course }); // wait for model output 
+            //res.render("feed", { postsByCourse });
         } catch (error) {
             console.error("Error fetching course data:", error);
         }

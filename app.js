@@ -3,9 +3,11 @@ const express = require('express'); //required to use 'express' module that allo
 const path = require("path"); //required to use 'path' module that gets the current directory
 const app = express(); //create an app from express
 const port = process.env.PORT; //define our port number, this doesn’t have to be 3000
+const session = require('express-session');
 const users = require('./routes/UserRoutes'); // importing all user routes
 const posts = require('./routes/PostsRoutes'); // importing all post routes
 const login = require('./routes/LoginRoutes');
+
 //------------------------File upload---------------------------
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
@@ -24,6 +26,11 @@ app.use(users);  // setting all paths
 app.use(posts);
 app.use(login);
 
+app.use(session({
+  secret: 'schloss-einstein', 
+  resave: false,  
+  saveUninitialized: false  
+}))
 // Start the server
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 

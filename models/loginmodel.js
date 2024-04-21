@@ -15,12 +15,13 @@ const db = knex({
 const Login = {
     verifyUser: async (name, email) => {
         try {
-            const user = await this.db.select('*').from('users').where({ username: name, email_address: email }).first();
-            console.log("Query Ran:", this.db.client.lastQuery());
+            console.log(name, email);
+            const user = await db.select('*').from('users').where({ username: name, email_address: email }).first();
+            console.log("Query Ran:", user);
             return user || {};
         } catch (error) {
-            console.error("Knex Query Error:", error);
-            throw error;
+            console.error("Error fetching user:", error);
+            return {};
         }
     }
 };

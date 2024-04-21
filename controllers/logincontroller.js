@@ -1,4 +1,5 @@
 const { Login } = require('../models/loginmodel');
+const session = require('express-session');
 
 
 const LoginController = {
@@ -8,13 +9,14 @@ const LoginController = {
       const username = req.body.username;
       const userEmail = req.body.user_email;
       const user = await Login.verifyUser(username, userEmail);
-      if (user.length == 1) {
-        console.log("found user", user[0].user_id);
-        req.session.user_id = user[0].user_id;
-        req.session.user_name = user[0].username;
-        req.session.user_email = user[0].user_email;
+      //console.log(user);
+      if (user) { // if user is verified, set session details for them 
+        console.log("found user", user.user_id);
+        req.session.user_id = user.user_id;
+        req.session.user_name = user.username;
+        req.session.user_email = user.user_email;
 
-        return res.redirect(302, "/feed");
+        return res.redirect("/feed");
       } else {
         console.log("no user found", user.length);
       }

@@ -1,4 +1,3 @@
-
 //toggle menu
 
 const showSidebar = (toggleId, sidebarId, mainId) => {
@@ -47,10 +46,12 @@ function getTab(el) {
   // send course selection to server
   document.querySelector(".sidebar-select").addEventListener("click", function(event) {
     console.log("clicked");
-    const course = $(this).data("sidebar");
+    const course = $(this).data("sidebar"); // get data from particular course
+    console.log({ course: course });
+
 
     $.ajax({
-        url: `/photos/${course}`, // need to change
+        url: '/feed',        //?course=${course}`,
         method: "POST",
         data: { course: course },
         success: function(response) {
@@ -59,7 +60,7 @@ function getTab(el) {
             console.log("Data sent successfully!");
           
         },
-        error: function(xhr, status, error) {
+        error: function(error) {
           // Handle network errors or server-side errors
           console.error("Error sending data:", error);
         }

@@ -12,7 +12,7 @@ posts.get('/', async (req, res) => {
 
 
 // page that lists all users
-posts.get("/photos", PostController.getFeed);
+posts.get("/feed", PostController.getFeed);
     
 
 // page that displays user details
@@ -27,6 +27,6 @@ posts.post("/uploadimg", PostController.uploadPost);
 // upload text
 posts.post("/uploadtext", PostController.uploadText);
 
-posts.get("/feed", PostController.getCoursePosts);
+posts.post("/feed", PostController.getCoursePosts);
 
 module.exports = posts;
