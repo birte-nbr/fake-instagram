@@ -23,7 +23,7 @@ const User = {
   },
   createUser: async (fieldsToUpdate) => {
     const result = await db("users").insert(fieldsToUpdate);
-    const user_id = result[0];
+    const user_id = result[0];  
     return User.getUser(user_id);
   }
   

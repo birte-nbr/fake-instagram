@@ -1636,3 +1636,17 @@ form {
         width: 90%;
     }
 }
+
+
+/* 404 */
+
+.main-error {
+    text-align: center;
+    transform: translateY(80%);
+}
+
+.main-error img {
+    align-items: center;
+    transform: translateX(190%);
+    padding-top: 4em;
+}

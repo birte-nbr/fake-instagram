@@ -6,9 +6,10 @@ const posts = express.Router();
 
 
 // Define a route for the root URL ("/")
+/*
 posts.get('/', async (req, res) => {
     res.render('main.ejs'); // homepage template here 
-});
+});*/
 
 
 // page that lists all users
