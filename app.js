@@ -8,6 +8,7 @@ const users = require('./routes/UserRoutes'); // importing all user routes
 const posts = require('./routes/PostsRoutes'); // importing all post routes
 const login = require('./routes/LoginRoutes');
 
+
 //------------------------File upload---------------------------
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
@@ -20,7 +21,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // set up public directory for css
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './public')));
 
 app.use(users);  // setting all paths
 app.use(posts);

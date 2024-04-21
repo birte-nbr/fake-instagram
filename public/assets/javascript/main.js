@@ -133,3 +133,7 @@ function toggleForm(formToShow, formToHide) {
     // Add active class to the clicked button
     document.querySelector(`button[data-form="${formToShow}"]`).classList.add('active');
 }
+
+
+
+

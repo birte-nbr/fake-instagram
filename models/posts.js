@@ -66,11 +66,11 @@ const Post = {
     const path = require('path');
 
     if (acceptedMimeTypes.indexOf(uploadedPhoto.mimetype) >= 0) {
-      const imageDestinationPath = path.join(__dirname, '..', 'public', 'assets', 'uploads', uploadedPhoto.name);
+      const imageDestinationPath = path.join(__dirname, '..', 'public', 'uploads', uploadedPhoto.name);
       await uploadedPhoto.mv(imageDestinationPath);
 
       const resizedImagePath =
-        path.join(__dirname, '..', 'public', 'assets', 'uploads', 'resized', uploadedPhoto.name);
+        path.join(__dirname, '..', 'public', 'uploads', 'resized', uploadedPhoto.name);
       await sharp(imageDestinationPath).resize(750).toFile(resizedImagePath);
       // change file permission to delete
       fs.chmod(imageDestinationPath, permissions, (err) => {

@@ -6,16 +6,18 @@ const users = express.Router();
 
 
 // Define a route for the root URL ("/")
-users.get('/', async (req, res) => {
-    res.render('main.ejs');
-});
+/*users.get('/', async (req, res) => {
+    res.render('/feed');
+});*/
 
 
 // page that lists all users
 users.get("/users", UserController.getAllUsers);
 
    
+// register the user
 
+users.post("/register", UserController.register);
 
 // page that displays user details
 // is now implemented into getUserFeed 

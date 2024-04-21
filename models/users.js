@@ -20,7 +20,13 @@ const User = {
 
   getUser: async (user_id) => {
     return await db.select("*").from("users").where("user_id", user_id).first();
+  },
+  createUser: async (fieldsToUpdate) => {
+    const result = await db("users").insert(fieldsToUpdate);
+    const user_id = result[0];
+    return User.getUser(user_id);
   }
+  
 };
 
 module.exports = { User };
