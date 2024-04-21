@@ -40,6 +40,17 @@ const LoginController = {
 
     console.log("session destroyed", req.session);
     return res.redirect(302, "/login");
+  }, 
+  register: async (req, res) =>{
+    try {
+      const user_id = req.body.author;  // is generated 
+      const username = req.body.username;
+      const firstName = req.body.module;
+      const chooseImage = req.body.chooseImage ? 1 : 0;                    
+      const uploadedPhoto = req.files.image;
+    } catch (error) {
+      
+    }
   }
 };
 

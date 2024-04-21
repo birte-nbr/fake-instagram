@@ -1,3 +1,43 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const contributeLink = document.querySelector('a[href="./feed.html#post-box"]');
+    const postBox = document.getElementById('post-box');
+
+    // Function to add highlighting border around post-box
+    function highlightPostBox() {
+        if (postBox) {
+            postBox.style.border = '2px solid #FFA500'; // Orange border
+            setTimeout(() => {
+                postBox.style.border = 'none'; // Remove border after 5 seconds
+            }, 5000);
+        }
+    }
+
+    // Function to handle clicking on contribute link
+    function handleContributeLink(event) {
+        event.preventDefault(); // Prevent default link behavior
+        const hash = this.getAttribute('href'); // Get the hash value
+
+        // Redirect to the specified URL
+        window.location.href = hash;
+
+        // Highlight the post-box
+        highlightPostBox();
+    }
+
+    // Event listener for clicking on the contribute link
+    if (contributeLink) {
+        contributeLink.addEventListener('click', handleContributeLink);
+    }
+
+    // Check if the contribute link is not found or the user is not on the feed page
+    if (!contributeLink || window.location.pathname !== '/feed.html') {
+        // Highlight the post-box directly
+        highlightPostBox();
+    }
+});
+
+
+
 //toggle menu
 
 const showSidebar = (toggleId, sidebarId, mainId) => {
@@ -42,6 +82,20 @@ function getTab(el) {
       getTab(e.target);
     }
   });
+  
+  //contribute
+  function setChooseForm(value) {
+    const imageFields = document.getElementById('img-form');
+    const codeFields = document.getElementById('text-form');
+    // hide or show fields 
+    if (value) {
+        imageFields.style.display = 'block';
+        codeFields.style.display = 'none';
+    } else {
+        imageFields.style.display = 'none';
+        codeFields.style.display = 'block';
+    }
+}
 
   // send course selection to server
   document.querySelector(".sidebar-select").addEventListener("click", function(event) {
@@ -67,17 +121,15 @@ function getTab(el) {
       });
     });
 
-    // toggle between img or text upload
+
+function toggleForm(formToShow, formToHide) {
+    document.getElementById(formToShow).style.display = "block";
+    document.getElementById(formToHide).style.display = "none";
     
-    function setChooseForm(value) {
-      const imageFields = document.getElementById('img-form');
-      const codeFields = document.getElementById('text-form');
-      // hide or show fields 
-      if (value) {
-          imageFields.style.display = 'block';
-          codeFields.style.display = 'none';
-      } else {
-          imageFields.style.display = 'none';
-          codeFields.style.display = 'block';
-      }
-  }
+    // Remove active class from all buttons
+    const buttons = document.querySelectorAll('.tab-button-post-box');
+    buttons.forEach(button => button.classList.remove('active'));
+
+    // Add active class to the clicked button
+    document.querySelector(`button[data-form="${formToShow}"]`).classList.add('active');
+}

@@ -3,6 +3,9 @@ const dotenv = require("dotenv");
 const sharp = require("sharp");
 const fs = require("fs");
 
+const permissions = fs.constants.S_IWUSR | fs.constants.S_IWGRP | fs.constants.S_IWOTH;
+
+
 dotenv.config();
 
 const db = knex({
@@ -16,10 +19,13 @@ const db = knex({
 });
 
 const Post = {
-  // get all posts
+  // get all posts with corresponding users
   getPosts: async () => {
-    return await db.select("*").from("posts");
-  },
+    return await db.select('posts.*', 'users.user_id', 'users.username')
+                  .from('posts')
+                  .innerJoin('users', 'posts.author_id', 'users.user_id')
+                  .orderBy('post_date', 'desc');
+  },  
   // get posts by course 
   getPostsByCourse: async (course) => {
     return await db.select("*").from("posts").where("course", course);
@@ -55,7 +61,7 @@ const Post = {
       path: fieldsToUpdate.newfilename,
       code_text: 'none'
     };
-   uploadedPhoto = fieldsToUpdate.uploadedPhoto;
+    uploadedPhoto = fieldsToUpdate.uploadedPhoto;
     // check img, resize, and move
     const path = require('path');
 
@@ -64,51 +70,58 @@ const Post = {
       await uploadedPhoto.mv(imageDestinationPath);
 
       const resizedImagePath =
-      path.join(__dirname, '..', 'public', 'assets', 'uploads', 'resized', uploadedPhoto.name);
+        path.join(__dirname, '..', 'public', 'assets', 'uploads', 'resized', uploadedPhoto.name);
       await sharp(imageDestinationPath).resize(750).toFile(resizedImagePath);
-/*  // for deleting files 
-      fs.unlink(imageDestinationPath, function (err) {
+      // change file permission to delete
+      fs.chmod(imageDestinationPath, permissions, (err) => {
         if (err) {
-            console.error("Error deleting file:", err);
+          console.error('Error changing file permissions:', err);
         } else {
-            console.log(imageDestinationPath + " deleted");
+          console.log('File permissions changed successfully.');
+          // Now attempt to delete the file
+          fs.unlink(imageDestinationPath, (unlinkErr) => {
+            if (unlinkErr) {
+              console.error('Error deleting file:', unlinkErr);
+            } else {
+              console.log(imageDestinationPath +'deleted successfully.');
+            }
+          });
         }
-    }); */
-    
-    }
-    try {
-      // Insert into db
-      const result = await db.insert(postData).into("posts");
-      return result;
-    } catch (error) {
-      console.error("Error inserting post:", error);
-      throw error; // Throw any errors that occur during insertion
-    }
-  },
-  createTextPost: async (fieldsToUpdate) => {
-    console.log(fieldsToUpdate);
-    let post_date = new Date();
-    let collaboration_id = 1; // for now is set, will be implemented later
-    // assign input fields
-    let postData = {
-      author_id: fieldsToUpdate.user_id,
-      post_date: post_date,
-      caption: fieldsToUpdate.caption,
-      photo: fieldsToUpdate.chooseImage,
-      course: fieldsToUpdate.module,
-      collaboration_id: collaboration_id,
-      code_text: fieldsToUpdate.code_text,
-      path: 'none',
-    };
-    try {
-      // Insert into db
-      const result = await db.insert(postData).into("posts");
-      return result;
-    } catch (error) {
-      console.error("Error inserting text post:", error);
-      throw error; // Throw any errors that occur during insertion
-    }   
-  }
+      });
+        }
+        try {
+          // Insert into db
+          const result = await db.insert(postData).into("posts");
+          return result;
+        } catch (error) {
+          console.error("Error inserting post:", error);
+          throw error; // Throw any errors that occur during insertion
+        }
+      },
+        createTextPost: async (fieldsToUpdate) => {
+          console.log(fieldsToUpdate);
+          let post_date = new Date();
+          let collaboration_id = 1; // for now is set, will be implemented later
+          // assign input fields
+          let postData = {
+            author_id: fieldsToUpdate.user_id,
+            post_date: post_date,
+            caption: fieldsToUpdate.caption,
+            photo: fieldsToUpdate.chooseImage,
+            course: fieldsToUpdate.module,
+            collaboration_id: collaboration_id,
+            code_text: fieldsToUpdate.code_text,
+            path: 'none',
+          };
+          try {
+            // Insert into db
+            const result = await db.insert(postData).into("posts");
+            return result;
+          } catch (error) {
+            console.error("Error inserting text post:", error);
+            throw error; // Throw any errors that occur during insertion
+          }
+        }
 };
 
-module.exports = { Post };
+    module.exports = { Post };

@@ -20,7 +20,7 @@ const Login = {
             console.log("Query Ran:", user);
             return user || {};
         } catch (error) {
-            console.error("Error fetching user:", error);
+            console.error("Error verifying user:", error);
             return {};
         }
     }
