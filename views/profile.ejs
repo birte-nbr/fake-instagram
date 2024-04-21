@@ -21,6 +21,15 @@
                     <main id="profile-main" class="profile-main-layout">
                         <div class="container">
                             <!-- cover section -->
+                            <div class="cover-section">
+                                <div class="cover-image">
+                                    <% if (user.background_pic == '1') { %>
+                                    <img src="/assets/img/flowers.png" class="cover-image-element">
+                                    <% } else { %>
+                                        <img src="/assets/img/mountains.png" class="cover-image-element">
+                                        <% } %>
+                                    <div class="cover-overlay"></div>
+                                </div>
                          
                                 <!-- user information -->
                                 <div class="user-info">
@@ -76,7 +85,11 @@
                                             <div class="post-heading">
                                                 <div class="user">
                                                     <div class="profile-photo">
-                                                       
+                                                        <% if (user.profile_pic== '1' ) { %>
+                                                            <img src="assets/img/elephant.png"> <!--check profile img-->
+                                                            <% } else { %>
+                                                           <img src="assets/img/giraffe.png"> <!--check profile img-->
+                                                           <% } %>                                                       
                                                         </div>
                                                     <div class="info">
                                                         <h3>
