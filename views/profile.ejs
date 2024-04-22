@@ -23,24 +23,24 @@
                             <!-- cover section -->
                             <div class="cover-section">
                                 <div class="cover-image">
-                                    <% if (user.background_pic == '1') { %>
-                                    <img src="/assets/img/flowers.png" class="cover-image-element">
-                                    <% } else { %>
-                                        <img src="/assets/img/mountains.png" class="cover-image-element">
-                                        <% } %>
-                                    <div class="cover-overlay"></div>
+                                    <% if (user.background_pic=='1' ) { %>
+                                        <img src="/assets/img/flowers.png" class="cover-image-element">
+                                        <% } else { %>
+                                            <img src="/assets/img/mountains.png" class="cover-image-element">
+                                            <% } %>
+                                                <div class="cover-overlay"></div>
                                 </div>
-                         
+
                                 <!-- user information -->
                                 <div class="user-info">
                                     <div class="profile-picture">
                                         <div class="picture-container">
-                                            <% if (user.profile_pic== '1' ) { %>
-                                                <img src="/assets/img/elephant.png" class="profile-picture-element"> 
+                                            <% if (user.profile_pic=='1' ) { %>
+                                                <img src="/assets/img/elephant.png" class="profile-picture-element">
                                                 <% } else { %>
-                                               <img src="/assets/img/giraffe.png" class="profile-picture-element"> 
-                                               <% } %> 
-                                            <!--include in db and userController-->
+                                                    <img src="/assets/img/giraffe.png" class="profile-picture-element">
+                                                    <% } %>
+                                                        <!--include in db and userController-->
                                         </div>
                                         <button type="button" class="edit-picture-button"><ion-icon
                                                 name="camera"></ion-icon></button>
@@ -51,7 +51,9 @@
                                     </h1>
                                     <p class="user-interests">IDM student 2024</p>
                                     <!--include in db and userController-->
-                                    <p class="user-bio">HI! I'm from <%= user.country %> and my favourite module is <%= user.fav_course %></p>
+                                    <p class="user-bio">HI! I'm from <%= user.country %> and my favourite module is <%=
+                                                user.fav_course %>
+                                    </p>
                                 </div>
                             </div>
                             <!-- navigation section -->
@@ -61,12 +63,6 @@
                                 <ul class="profile-tabs">
                                     <li class="tab-item">
                                         <a href="#item1" class="active">Personal Loop</a>
-                                    </li>
-                                    <li class="tab-item">
-                                        <a href="#item2">Photos</a>
-                                    </li>
-                                    <li class="tab-item">
-                                        <a href="#item3">Collaborations</a>
                                     </li>
                                 </ul>
                             </div>
@@ -80,18 +76,19 @@
                             <div id="item1" class="tab-content content-visible">
                                 <h2>Your Loop</h2>
                                 <!--post-->
-                                <% if (profilePosts.length > 0) { %>
+                                <% if (profilePosts.length> 0) { %>
                                     <% for( let i=0; i < profilePosts.length; i++) { %>
                                         <div class="post">
                                             <div class="post-heading">
                                                 <div class="user">
                                                     <div class="profile-photo">
-                                                        <% if (user.profile_pic== '1' ) { %>
-                                                            <img src="/assets/img/elephant.png"> <!--check profile img-->
+                                                        <% if (user.profile_pic=='1' ) { %>
+                                                            <img src="/assets/img/elephant.png">
+                                                            <!--check profile img-->
                                                             <% } else { %>
-                                                           <img src="/assets/img/giraffe.png"> 
-                                                           <% } %>                                                       
-                                                        </div>
+                                                                <img src="/assets/img/giraffe.png">
+                                                                <% } %>
+                                                    </div>
                                                     <div class="info">
                                                         <h3>
                                                             <%= user.given_name%>
@@ -121,16 +118,33 @@
                                     <span><i class="uil uil-bookmark-full"></i></span>
                                 </div>
                             </div>-->
-
+                                            <!-- Add a tag box container within the caption div -->
                                             <div class="caption">
                                                 <p><b>
-                                                        <%= user.given_name%>
-                                                            <%=user.surname %>
+                                                        <%= user.given_name %>
+                                                            <%= user.surname %>
                                                     </b>
                                                     <%= profilePosts[i].caption %>
-                                                        <span class="harsh-tag">#<%= profilePosts[i].course %></span>
-                                                </p><!--hier später nur course als tag möglich-->
+                                                </p>
+                                                <!-- Display the favorite course as a tag item -->
+                                                <div class="classes_tagbox">
+                                                    <% let course = profilePosts[i].course; %>
+                                                    <% if (course === '1') { %>
+                                                        <div class="classes_tag_item" id="classweb">Web Authoring</div>
+                                                    <% } else if (course === '2') { %>
+                                                        <div class="classes_tag_item" id="classprogramming">Programming</div>
+                                                    <% } else if (course === '3') { %>
+                                                        <div class="classes_tag_item" id="classmedia">Critical Media</div>
+                                                    <% } else if (course === '4') { %>
+                                                        <div class="classes_tag_item" id="classvideo">Video & Sensors</div>
+                                                    <% } else if (course === '5') { %>
+                                                        <div class="classes_tag_item" id="classviscomp">Visual Computing</div>
+                                                    <% } %>
+                                                </div>
+                                                
+                                                
                                             </div>
+
 
                                             <div class="comments-section">
                                                 <div class="comment">
@@ -166,42 +180,42 @@
                                                 </div>
                                             </div>
                                             <% } %>
-    
-                    
-                                        </div>
-                                    <% } %>
+
+
+                            </div>
+                            <% } %>
                                 <% } %>
-                            </div>
                         </div>
-                        <div id="item2" class="tab-content">
-                            <h2>Photos</h2> <!--include in db and postController-->
-                            <div class="photo-grid">
-                                <img src="/assets/img/user3.jpg" alt="Image 1">
-                                <img src="/assets/img/user3.jpg" alt="Image 2">
-                                <img src="/assets/img/user3.jpg" alt="Image 3">
-                                <img src="/assets/img/user3.jpg" alt="Image 4">
-                                <img src="/assets/img/user3.jpg" alt="Image 5">
-                                <img src="/assets/img/user3.jpg" alt="Image 6">
-                                <img src="/assets/img/user3.jpg" alt="Image 7">
-                                <img src="/assets/img/user3.jpg" alt="Image 8">
-                                <img src="/assets/img/user3.jpg" alt="Image 9">
-                            </div>
+                    </div>
+                    <div id="item2" class="tab-content">
+                        <h2>Photos</h2> <!--include in db and postController-->
+                        <div class="photo-grid">
+                            <img src="/assets/img/user3.jpg" alt="Image 1">
+                            <img src="/assets/img/user3.jpg" alt="Image 2">
+                            <img src="/assets/img/user3.jpg" alt="Image 3">
+                            <img src="/assets/img/user3.jpg" alt="Image 4">
+                            <img src="/assets/img/user3.jpg" alt="Image 5">
+                            <img src="/assets/img/user3.jpg" alt="Image 6">
+                            <img src="/assets/img/user3.jpg" alt="Image 7">
+                            <img src="/assets/img/user3.jpg" alt="Image 8">
+                            <img src="/assets/img/user3.jpg" alt="Image 9">
                         </div>
-                        <div id="item3" class="tab-content">
-                            <h2>Collaborations</h2>
-                            <!--include in db and postController but we need to adjust this anyway-->
-                            <div class="collaborations-grid">
-                                <img src="/assets/img/user3.jpg" alt="Image 1">
-                                <img src="images/user3.jpg" alt="Image 2">
-                                <img src="images/user3.jpg" alt="Image 3">
-                                <img src="images/user3.jpg" alt="Image 4">
-                                <img src="images/user3.jpg" alt="Image 5">
-                                <img src="images/user3.jpg" alt="Image 6">
-                                <img src="images/user3.jpg" alt="Image 7">
-                                <img src="images/user3.jpg" alt="Image 8">
-                                <img src="images/user3.jpg" alt="Image 9">
-                            </div>
+                    </div>
+                    <div id="item3" class="tab-content">
+                        <h2>Collaborations</h2>
+                        <!--include in db and postController but we need to adjust this anyway-->
+                        <div class="collaborations-grid">
+                            <img src="/assets/img/user3.jpg" alt="Image 1">
+                            <img src="images/user3.jpg" alt="Image 2">
+                            <img src="images/user3.jpg" alt="Image 3">
+                            <img src="images/user3.jpg" alt="Image 4">
+                            <img src="images/user3.jpg" alt="Image 5">
+                            <img src="images/user3.jpg" alt="Image 6">
+                            <img src="images/user3.jpg" alt="Image 7">
+                            <img src="images/user3.jpg" alt="Image 8">
+                            <img src="images/user3.jpg" alt="Image 9">
                         </div>
+                    </div>
                     </div>
                     </div>
                     </div>

@@ -11,6 +11,8 @@ users.get('/', async (req, res) => {
 });
 
 
+
+
 // page that lists all users
 users.get("/users", UserController.getAllUsers);
 
