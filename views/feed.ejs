@@ -153,16 +153,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <% if (posts[i].code_text !='none' ) { %>
+                                    <% if (posts[i].code_text !== 'none') { %>
                                         <div class="post-content">
-                                            <p class="content">
-                                                <%=posts[i].code_text %>
-                                            </p>
-                                        </div>
+                                            <div class="code-box">
+                                                <pre>
+                                                    <code>
+                                                        <%= posts[i].code_text %>
+                                                    </code>
+                                                </pre>
+                                            </div>
+                                        </div>                                    
                                         <% } else { %>
 
                                             <div class="posted-image">
-                                                <img src="/uploads/<%= posts[i].path%>">
+                                                <img src="/uploads/<%=posts[i].path%>">
                                             </div>
                                             <% } %>
 

@@ -61,10 +61,10 @@ const PostController = {
             const chooseImage = req.body.chooseImage ? 1 : 0;                    
             const uploadedPhoto = req.files.image;
             // generate a file name
-            const randomNumber = Math.floor(Math.random() * 9000) + 1000;
-            let newfilename = randomNumber + uploadedPhoto.name;
+            //const randomNumber = Math.floor(Math.random() * 9000) + 1000;
+            let newfilename = uploadedPhoto.name;
             //const uploadPath = path.join(__dirname, 'assets/uploads', newfilename);
-
+            //console.log(newfilename);
             await Post.createPost({ chooseImage, uploadedPhoto, user_id, newfilename, caption, module });          
             res.redirect(`users/${user_id}`); // upload was successful, redirect to user profile   
         } catch (error) {
