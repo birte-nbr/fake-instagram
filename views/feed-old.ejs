@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -228,4 +229,236 @@
 
       <script src="/assets/javascript/main.js"></script>
    </body>
+=======
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
+      <link rel="stylesheet" href="/assets/css/styles.css">
+      <title>The Loop</title>
+   </head>
+   <body>
+      <!-- Sidebar bg -->
+      <img src="assets/img/sidebar-bg.jpg" alt="sidebar img" class="bg-image">
+
+     <%- include('partials/header') %>
+
+      <%- include('partials/sidebar') %>
+      <!--Loop-->
+      <main class="main main-container" id="main">
+
+        <section class="loop-feed">
+            <h1>The Loop</h1>
+            <div id="post-box">
+                    <h2>Create a post!</h2>
+            
+                        <form action="" class="post-cta">
+                        
+                            <input type="text" placeholder="Contribute to The Loop!" id="create-post">
+                            <input type="submit" value="Post" class="btn"> 
+                            <div class="emoji-menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="emoji-icon">
+                                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="emoji-icon">
+                                <path d="M3.25 4A2.25 2.25 0 001 6.25v7.5A2.25 2.25 0 003.25 16h7.5A2.25 2.25 0 0013 13.75v-7.5A2.25 2.25 0 0010.75 4h-7.5zM19 4.75a.75.75 0 00-1.28-.53l-3 3a.75.75 0 00-.22.53v4.5c0 .199.079.39.22.53l3 3a.75.75 0 001.28-.53V4.75z"></path>
+                            </svg>
+                        </div>
+                        </form>
+                       
+            </div>
+            <% if (posts.length > 0) { %>
+            <%  for( let i = 0; i < posts.length; i++) { %>
+            <div class="posts-feed">
+                <!--post-->
+                <div class="post">
+                    <div class="post-heading">
+                        <div class="user">
+                            <div class="profile-photo">
+                                <img src="assets/img/avatars/avatar-5.jpg" alt="">
+                            </div>
+                            <div class="info">
+                                <h3>John Michael</h3>
+                                <small>2 hours ago</small>
+                            </div>
+                            <div class="menu">
+                                <button type="button" class="menu-btn" aria-haspopup="true" aria-expanded="false">
+                                    <ion-icon class="menu-icon" name="ellipsis-horizontal" role="img" aria-label="ellipsis horizontal"></ion-icon>
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="post-content">
+                        <p class="content">Photography is the art of capturing light with a camera. It can be used to create images that tell stories, express emotions, or document reality. it can be fun, challenging, or rewarding. It can also be a hobby, a profession, or a passion. 📷</p>
+                    </div>
+                    
+                    <div class="post-interaction">
+                        <div class="likes">
+                            <div class="like-btn">
+                                <button type="button">
+                                    <i class="ri-heart-line like-icon"></i>
+                                </button>
+                                <span class="like-count">1,300</span>
+                            </div>
+                        </div>
+                        <div class="comments">
+                            <button type="button" class="comment-btn" onclick="scrollToComment()">
+                                <i class="ri-chat-3-line comment-icon"></i>
+                            </button>
+                            <span class="comment-count">260</span>
+                        </div>
+                    </div>
+                    
+                
+                    <div class="comments-section">
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/img/avatars/avatar-2.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Steeve</a>
+                                <p class="comment-text">I love this so much! 🌳🐶</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/img/avatars/avatar-3.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Monroe</a>
+                                <p class="comment-text">I enjoy people and emotions. 😊😢</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/img/avatars/avatar-5.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Jesse</a>
+                                <p class="comment-text">Photography is my life. 🎨📸</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="add-comment">
+                        <img src="assets/img/avatars/avatar-7.jpg" alt="" class="user-avatar">
+                        <div class="comment-input">
+                            <textarea placeholder="Add Comment...." rows="1" class="comment-textarea"></textarea>
+                            
+                        </div>
+                        <button type="submit" class="comment-submit-btn">Comment</button>
+                    </div>
+                </div>
+               
+
+                 <!--post-->
+                <div class="post">
+                    <div class="post-heading">
+                        <div class="user">
+                            <div class="profile-photo">
+                                <img src="img/eve.jpg">
+                            </div>
+                            <div class="info">
+                                <h3>Lana Rose</h3>
+                                <small>Dublin, 15 Minutes Ago</small>
+                            </div>
+                        </div>
+                        <span class="edit">
+                            <i class="uil uil-ellipsis-h"></i>
+                        </span>
+                    </div>
+
+                    <div class="posted-image">
+                        <img src="/uploads/<%= posts[i].path%>">
+                    </div>
+
+                    <div class="action-buttons">
+                        <div class="interaction-buttons">
+                            <span><i class="uil uil-heart"></i></span>
+                            <span><i class="uil uil-comment-dots"></i></span>
+                            <span><i class="uil uil-share-alt"></i></span>
+                        </div>
+                        <div class="bookmark">
+                            <span><i class="uil uil-bookmark-full"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="caption">
+                        <p><b>Lana Rose</b><%= posts[i].caption  %>
+                        <span class="harsh-tag">#lifestyle</span></p>
+                    </div>
+
+                    <div class="comments-section">
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/img/avatars/avatar-2.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Steeve</a>
+                                <p class="comment-text">I love this so much! 🌳🐶</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/img/avatars/avatar-3.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Monroe</a>
+                                <p class="comment-text">I enjoy people and emotions. 😊😢</p>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <img src="assets/img/avatars/avatar-5.jpg" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <a href="#" class="username">Jesse</a>
+                                <p class="comment-text">Photography is my life. 🎨📸</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="add-comment">
+                        <img src="assets/img/avatars/avatar-7.jpg" alt="" class="user-avatar">
+                        <div class="comment-input">
+                            <textarea placeholder="Add Comment...." rows="1" class="comment-textarea"></textarea>
+                            
+                        </div>
+                        <button type="submit" class="comment-submit-btn">Comment</button>
+                    </div>
+                </div>
+                
+            </div>
+            <% } %>
+            <% } else { %>
+                <p>no posts yet!</p>
+            <% } %>
+        </section>
+
+        <section class="news">
+            <h1>News</h1>
+            <div class="previews">
+                <div class="calender-preview">
+                    <h2>Events Calendar</h2>
+                    <img src="/assets/img/group.jpg">
+                </div>
+            </div>
+            <div class="previews">
+                <div class="weather-preview">
+                    <h2>Today in Dublin</h2>
+                    <img src="/assets/img/group.jpg">
+                </div>
+            </div>
+    </section>
+      </main>
+      
+
+
+      <script src="/assets/javascript/main.js"></script>
+   </body>
+>>>>>>> origin/main
 </html>

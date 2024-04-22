@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet" href="/css/style.css" />-->
+
+
+</head>
+
+<body>
+    <h1>Feed</h1>
+
+    <%  for( let i = 0; i < posts.length; i++) { %>  <!--change this to the actual results array-->
+        <img class="post_pic" 
+            src="/assets/uploads/<%= posts[i].path%>" 
+            alt="<%= posts[i].alt_text%>" />
+
+        <%= posts[i].caption  %>
+       
+
+
+    
+            <% } %>
+
+</body>
+
+</html>
