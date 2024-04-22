@@ -5,7 +5,6 @@ const { Post } = require('../models/posts.js');
 const posts = express.Router();
 
 
-
 // page that lists all users
 posts.get("/feed", PostController.getFeed);
     

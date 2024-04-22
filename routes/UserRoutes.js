@@ -7,7 +7,7 @@ const users = express.Router();
 
 // Define a route for the root URL ("/")
 users.get('/', async (req, res) => {
-    res.redirect("/feed");
+    res.redirect('/feed');
 });
 
 
