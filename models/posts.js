@@ -49,6 +49,7 @@ const Post = {
     let post_date = new Date();
     let collaboration_id = 1; // for now is set, will be implemented later
     // assign input fields
+    //console.log(fieldsToUpdate.newfilename);
     let postData = {
       author_id: fieldsToUpdate.user_id,
       post_date: post_date,
