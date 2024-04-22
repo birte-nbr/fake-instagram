@@ -13,11 +13,11 @@ const LoginController = {
       //console.log(user);
       if (user) { // if user is verified, set session details for them 
         console.log("found user", user.user_id);
-        req.session.user_id = user.user_id;
-        req.session.user_name = user.username;
-        req.session.user_email = user.user_email;
+       // req.session.user_id = user.user_id;
+        //req.session.user_name = user.username;
+        //req.session.user_email = user.user_email;
 
-        return res.redirect("/feed");
+        return res.redirect(`/users/${user.user_id}`);
       } else {
         console.log("no user found", user.length);
         res.redirect("/404");
