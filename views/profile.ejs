@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <title>The Loop</title>
+</head>
+
+<body>
+
+    <%- include('partials/header') %>
+
+        <%- include('partials/sidebar') %>
+
+            <main class="main main-container" id="main">
+
+                <section class="profile-body">
+                    <main id="profile-main" class="profile-main-layout">
+                        <div class="container">
+                            <!-- cover section -->
+                            <div class="cover-section">
+                                <div class="cover-image">
+                                    <% if (user.background_pic == '1') { %>
+                                    <img src="/assets/img/flowers.png" class="cover-image-element">
+                                    <% } else { %>
+                                        <img src="/assets/img/mountains.png" class="cover-image-element">
+                                        <% } %>
+                                    <div class="cover-overlay"></div>
+                                </div>
+                         
+                                <!-- user information -->
+                                <div class="user-info">
+                                    <div class="profile-picture">
+                                        <div class="picture-container">
+                                            <% if (user.profile_pic== '1' ) { %>
+                                                <img src="/assets/img/elephant.png" class="profile-picture-element"> 
+                                                <% } else { %>
+                                               <img src="/assets/img/giraffe.png" class="profile-picture-element"> 
+                                               <% } %> 
+                                            <!--include in db and userController-->
+                                        </div>
+                                        <button type="button" class="edit-picture-button"><ion-icon
+                                                name="camera"></ion-icon></button>
+                                    </div>
+                                    <h1 class="user-name">
+                                        <%= user.given_name%>
+                                            <%=user.surname %>
+                                    </h1>
+                                    <p class="user-interests">IDM student 2024</p>
+                                    <!--include in db and userController-->
+                                    <p class="user-bio">HI! I'm from <%= user.country %> and my favourite module is <%= user.fav_course %></p>
+                                </div>
+                            </div>
+                            <!-- navigation section -->
+
+
+                            <div class="profile-navigation">
+                                <ul class="profile-tabs">
+                                    <li class="tab-item">
+                                        <a href="#item1" class="active">Personal Loop</a>
+                                    </li>
+                                    <li class="tab-item">
+                                        <a href="#item2">Photos</a>
+                                    </li>
+                                    <li class="tab-item">
+                                        <a href="#item3">Collaborations</a>
+                                    </li>
+                                </ul>
+                            </div>
+                </section>
+
+
+
+                <section class="profile-posts-section">
+                    <div class="personal-content-container" id="personal-content-container">
+                        <div class="wrapper_tab-content">
+                            <div id="item1" class="tab-content content-visible">
+                                <h2>Your Loop</h2>
+                                <!--post-->
+                                <% if (profilePosts.length > 0) { %>
+                                    <% for( let i=0; i < profilePosts.length; i++) { %>
+                                        <div class="post">
+                                            <div class="post-heading">
+                                                <div class="user">
+                                                    <div class="profile-photo">
+                                                        <% if (user.profile_pic== '1' ) { %>
+                                                            <img src="/assets/img/elephant.png"> <!--check profile img-->
+                                                            <% } else { %>
+                                                           <img src="/assets/img/giraffe.png"> 
+                                                           <% } %>                                                       
+                                                        </div>
+                                                    <div class="info">
+                                                        <h3>
+                                                            <%= user.given_name%>
+                                                                <%=user.surname %>
+                                                        </h3>
+                                                        <small>
+                                                            <%= profilePosts[i].post_date %>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <span class="edit">
+                                                    <i class="uil uil-ellipsis-h"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="posted-image">
+                                                <img src="/uploads/<%= profilePosts[i].path%>" />
+                                            </div>
+                                            <!-- might not need it 
+                            <div class="action-buttons">
+                                <div class="interaction-buttons">
+                                    <span><i class="uil uil-heart"></i></span>
+                                    <span><i class="uil uil-comment-dots"></i></span>
+                                    <span><i class="uil uil-share-alt"></i></span>
+                                </div>
+                                <div class="bookmark">
+                                    <span><i class="uil uil-bookmark-full"></i></span>
+                                </div>
+                            </div>-->
+
+                                            <div class="caption">
+                                                <p><b>
+                                                        <%= user.given_name%>
+                                                            <%=user.surname %>
+                                                    </b>
+                                                    <%= profilePosts[i].caption %>
+                                                        <span class="harsh-tag">#<%= profilePosts[i].course %></span>
+                                                </p><!--hier später nur course als tag möglich-->
+                                            </div>
+
+                                            <div class="comments-section">
+                                                <div class="comment">
+                                                    <div class="user-avatar">
+                                                        <img src="assets/img/avatars/avatar-2.jpg" alt="">
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        <a href="#" class="username">Steeve</a>
+                                                        <p class="comment-text">I love this so much!</p>
+                                                        <!--include in db and postController-->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="add-comment">
+                                                <img src="assets/img/avatars/avatar-7.jpg" alt="" class="user-avatar">
+                                                <div class="comment-input">
+                                                    <textarea placeholder="Add Comment...." rows="1"
+                                                        class="comment-textarea"></textarea>
+
+                                                </div>
+                                                <button type="submit" class="comment-submit-btn">Comment</button>
+                                            </div>
+                                        </div>
+                                        <% if (profilePosts[i].code_text !=='none' ) { %>
+                                            <div class="post-content">
+                                                <div class="code-box">
+                                                    <pre>
+                                                        <code>
+                                                            <%= profilePosts[i].code_text %>
+                                                        </code>
+                                                    </pre>
+                                                </div>
+                                            </div>
+                                            <% } %>
+    
+                    
+                                        </div>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div id="item2" class="tab-content">
+                            <h2>Photos</h2> <!--include in db and postController-->
+                            <div class="photo-grid">
+                                <img src="/assets/img/user3.jpg" alt="Image 1">
+                                <img src="/assets/img/user3.jpg" alt="Image 2">
+                                <img src="/assets/img/user3.jpg" alt="Image 3">
+                                <img src="/assets/img/user3.jpg" alt="Image 4">
+                                <img src="/assets/img/user3.jpg" alt="Image 5">
+                                <img src="/assets/img/user3.jpg" alt="Image 6">
+                                <img src="/assets/img/user3.jpg" alt="Image 7">
+                                <img src="/assets/img/user3.jpg" alt="Image 8">
+                                <img src="/assets/img/user3.jpg" alt="Image 9">
+                            </div>
+                        </div>
+                        <div id="item3" class="tab-content">
+                            <h2>Collaborations</h2>
+                            <!--include in db and postController but we need to adjust this anyway-->
+                            <div class="collaborations-grid">
+                                <img src="/assets/img/user3.jpg" alt="Image 1">
+                                <img src="images/user3.jpg" alt="Image 2">
+                                <img src="images/user3.jpg" alt="Image 3">
+                                <img src="images/user3.jpg" alt="Image 4">
+                                <img src="images/user3.jpg" alt="Image 5">
+                                <img src="images/user3.jpg" alt="Image 6">
+                                <img src="images/user3.jpg" alt="Image 7">
+                                <img src="images/user3.jpg" alt="Image 8">
+                                <img src="images/user3.jpg" alt="Image 9">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+
+
+
+                </section>
+
+
+                </section>
+            </main>
+            <script src="/assets/javascript/main.js"></script>
+</body>
+
+</html>
